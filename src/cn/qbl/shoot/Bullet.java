@@ -11,8 +11,10 @@ public class Bullet extends FlyingObject {
 
 	@Override
 	public BufferedImage getImage() {
-		// TODO Auto-generated method stub
-		return Images.bullet;
+		if (isLife()) {
+			return Images.bullet;
+		}
+		return null;
 	}
 
 	@Override

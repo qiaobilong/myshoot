@@ -13,7 +13,12 @@ public class Bee extends FlyingObject implements EnemyAward {
 		super(60, 89);
 		this.xspeed = 1;
 		Random random = new Random();
-		this.awardType = random.nextInt(2);
+		int type = random.nextInt(100);
+		if (type < 30) {
+			this.awardType = EnemyAward.LIFE;
+		} else {
+			this.awardType = EnemyAward.FIRE;
+		}
 		setSpeed(2);
 	}
 

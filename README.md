@@ -227,3 +227,17 @@ public static BufferedImage readImage(String fileName) {
 1. 在World中设计START、RUNNING、PAUSE、GAME_OVER状态常量，usestatus变量表示当前状态    在Images中设计start、pause、gameover状态图片，静态块中初始化    在World的paint()中，设置在不同的状态下画不同的状态图
 2. 设置那一堆action为仅在运行状态下执行    设置英雄机随着鼠标移动为仅在运行状态下执行
 3. 重写mouseClicked()鼠标点击事件:      启动时变运行，游戏结束时先清理现场再变启动    重写mouseExited()鼠标移出事件:      运行变暂停    重写mouseEntered()鼠标移入事件:      暂停变运行
+
+## 新功能
+
+### 增加历史最大得分显示功能
+
+### 降低子弹生成频率
+
+### 修复子弹碰撞后不消失的bug
+
+### 小蜜蜂调整
+
+1. 生成概率调低（小蜜蜂:小敌机:大敌机为2:5:3）
+2. 增加奖励类型生成概率控制功能（火力:生命为7:3）
+

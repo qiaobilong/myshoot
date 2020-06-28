@@ -192,7 +192,7 @@ public class World extends JPanel {
 			enemies = Arrays.copyOf(enemies, enemies.length + 1);
 			enemies[enemies.length - 1] = enemy;
 		}
-		if (enterIndex % 30 == 0) {
+		if (enterIndex % 60 == 0) {
 			Bullet[] bs = hero.getBullet();
 			bullets = Arrays.copyOf(bullets, bullets.length + bs.length);
 			System.arraycopy(bs, 0, bullets, bullets.length - bs.length, bs.length);
@@ -200,10 +200,10 @@ public class World extends JPanel {
 	}
 
 	private FlyingObject getEnemy() {
-		int num = new Random().nextInt(20);
-		if (num < 5) {
+		int num = new Random().nextInt(100);
+		if (num < 20) {
 			return new Bee();
-		} else if (num < 12) {
+		} else if (num < 70) {
 			return new Airplane();
 		} else {
 			return new BigAirplane();
