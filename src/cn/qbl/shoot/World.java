@@ -26,6 +26,8 @@ public class World extends JPanel {
 	public static final int GAME_OVER = 3;
 	private int usestatus = START;
 
+	private static int maxScore;
+
 	private Sky sky = new Sky();
 	private Hero hero = new Hero();
 	private Bullet[] bullets = {};
@@ -79,6 +81,9 @@ public class World extends JPanel {
 					usestatus = RUNNING;
 				}
 				if (usestatus == GAME_OVER) {
+					if (score > maxScore) {
+						maxScore = score;
+					}
 					sky = new Sky();
 					hero = new Hero();
 					bullets = new Bullet[0];
@@ -216,8 +221,9 @@ public class World extends JPanel {
 		for (int i = 0; i < enemies.length; i++) {
 			g.drawImage(enemies[i].getImage(), enemies[i].getX(), enemies[i].getY(), null);
 		}
-		g.drawString("Score: " + score, 10, 20);
-		g.drawString("Life: " + hero.getLife(), 10, 40);
+		g.drawString("MaxScore: " + maxScore, 10, 20);
+		g.drawString("Score: " + score, 10, 40);
+		g.drawString("Life: " + hero.getLife(), 10, 60);
 		if (usestatus == START) {
 			g.drawImage(Images.start, 0, 0, null);
 		}
