@@ -8,7 +8,8 @@ public class Airplane extends FlyingObject implements EnemyScore {
 
 	public Airplane() {
 		super(48, 50);
-		setSpeed(2);
+		speed = 2;
+		blood = 1;
 	}
 
 	@Override
@@ -18,7 +19,7 @@ public class Airplane extends FlyingObject implements EnemyScore {
 		} else if (isDead()) {
 			BufferedImage img = Images.airplanes[index++ % 4];
 			if (index == Images.airplanes.length) {
-				setState(REMOVE);
+				state = REMOVE;
 			}
 			return img;
 		}

@@ -6,7 +6,7 @@ public class Bullet extends FlyingObject {
 
 	public Bullet(int x, int y) {
 		super(8, 20, x, y);
-		setSpeed(3);
+		speed = 3;
 	}
 
 	@Override
@@ -19,11 +19,11 @@ public class Bullet extends FlyingObject {
 
 	@Override
 	public void step() {
-		setY(getY() - getSpeed());
+		y -= speed;
 	}
 
 	@Override
 	public boolean isOutside() {
-		return this.getY() <= -this.getHeidht();
+		return y <= -heidht;
 	}
 }

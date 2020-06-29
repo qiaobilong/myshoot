@@ -9,8 +9,8 @@ public class Hero extends FlyingObject {
 
 	public Hero() {
 		super(97, 139, 140, 400);
-		this.fire = 0;
-		this.life = 3;
+		fire = 0;
+		life = 3;
 	}
 
 	private int index;
@@ -26,23 +26,23 @@ public class Hero extends FlyingObject {
 	}
 
 	public Bullet[] getBullet() {
-		int x = this.getWidth() / 4;
+		int x = width / 4;
 		int y = 20;
 		if (fire > 0) {
 			Bullet[] bs = new Bullet[2];
-			bs[0] = new Bullet(this.getX() + 1 * x, this.getY() - y);
-			bs[1] = new Bullet(this.getX() + 3 * x, this.getY() - y);
+			bs[0] = new Bullet(this.x + 1 * x, this.y - y);
+			bs[1] = new Bullet(this.x + 3 * x, this.y - y);
 			return bs;
 		} else {
 			Bullet[] bs = new Bullet[1];
-			bs[0] = new Bullet(this.getX() + 2 * x, this.getY() - y);
+			bs[0] = new Bullet(this.x + 2 * x, this.y - y);
 			return bs;
 		}
 	}
 
 	public void moveTo(int x, int y) {
-		this.setX(x - this.getWidth() / 2);
-		this.setY(y - this.getHeidht() / 2);
+		this.x = x - width / 2;
+		this.y = y - heidht / 2;
 	}
 
 	public void addLife() {
@@ -62,7 +62,7 @@ public class Hero extends FlyingObject {
 	}
 
 	public int getLife() {
-		return this.life;
+		return life;
 
 	}
 }

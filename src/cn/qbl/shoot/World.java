@@ -212,14 +212,14 @@ public class World extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(sky.getImage(), sky.getX(), sky.getY(), null);
-		g.drawImage(sky.getImage(), sky.getX(), sky.getY1(), null);
-		g.drawImage(hero.getImage(), hero.getX(), hero.getY(), null);
+		g.drawImage(sky.getImage(), sky.x, sky.y, null);
+		g.drawImage(sky.getImage(), sky.x, sky.getY1(), null);
+		g.drawImage(hero.getImage(), hero.x, hero.y, null);
 		for (int i = 0; i < bullets.length; i++) {
-			g.drawImage(bullets[i].getImage(), bullets[i].getX(), bullets[i].getY(), null);
+			g.drawImage(bullets[i].getImage(), bullets[i].x, bullets[i].y, null);
 		}
 		for (int i = 0; i < enemies.length; i++) {
-			g.drawImage(enemies[i].getImage(), enemies[i].getX(), enemies[i].getY(), null);
+			g.drawImage(enemies[i].getImage(), enemies[i].x, enemies[i].y, null);
 		}
 		g.drawString("MaxScore: " + maxScore, 10, 20);
 		g.drawString("Score: " + score, 10, 40);

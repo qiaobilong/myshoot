@@ -11,15 +11,16 @@ public class Bee extends FlyingObject implements EnemyAward {
 
 	public Bee() {
 		super(60, 89);
-		this.xspeed = 1;
+		xspeed = 1;
 		Random random = new Random();
 		int type = random.nextInt(100);
 		if (type < 30) {
-			this.awardType = EnemyAward.LIFE;
+			awardType = EnemyAward.LIFE;
 		} else {
-			this.awardType = EnemyAward.FIRE;
+			awardType = EnemyAward.FIRE;
 		}
-		setSpeed(2);
+		speed = 2;
+		blood = 1;
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class Bee extends FlyingObject implements EnemyAward {
 		} else if (isDead()) {
 			BufferedImage img = Images.bees[index++ % 4];
 			if (index == Images.bees.length) {
-				setState(REMOVE);
+				state = REMOVE;
 			}
 			return img;
 		}
@@ -39,15 +40,15 @@ public class Bee extends FlyingObject implements EnemyAward {
 	@Override
 	public int getAward() {
 		// TODO Auto-generated method stub
-		return this.awardType;
+		return awardType;
 	}
 
 	@Override
 	public void step() {
 		super.step();
-		this.setX(this.getX() + this.xspeed);
-		if (this.getX() >= World.WIDTH - this.getWidth() || this.getX() <= 0) {
-			this.xspeed *= -1;
+		x += xspeed;
+		if (x >= World.WIDTH - width || x <= 0) {
+			xspeed *= -1;
 		}
 	}
 }

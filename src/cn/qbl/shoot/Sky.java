@@ -9,7 +9,7 @@ public class Sky extends FlyingObject {
 	public Sky() {
 		super(World.WIDTH, World.HEIDHT, 0, 0);
 		this.y1 = -World.HEIDHT;
-		setSpeed(1);
+		speed = 1;
 	}
 
 	@Override
@@ -22,19 +22,15 @@ public class Sky extends FlyingObject {
 		return y1;
 	}
 
-	public void setY1(int y1) {
-		this.y1 = y1;
-	}
-
 	@Override
 	public void step() {
-		setY(getY() + getSpeed());
-		setY1(getY1() + getSpeed());
-		if (getY() >= World.HEIDHT) {
-			setY(-World.HEIDHT);
+		y += speed;
+		y1 += speed;
+		if (y >= World.HEIDHT) {
+			y = -World.HEIDHT;
 		}
-		if (getY1() >= World.HEIDHT) {
-			setY1(-World.HEIDHT);
+		if (y1 >= World.HEIDHT) {
+			y1 = -World.HEIDHT;
 		}
 	}
 
