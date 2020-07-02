@@ -73,4 +73,10 @@ public abstract class FlyingObject {
 	public boolean isOutside() {
 		return y >= World.HEIDHT;
 	}
+
+	/**
+	 * 扣减blood的血量，敌机如果血量≤0则死亡
+	 * @param blood
+	 */
+	public abstract void subtractBlood(int blood);
 }

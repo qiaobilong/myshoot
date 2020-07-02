@@ -65,4 +65,14 @@ public class Hero extends FlyingObject {
 		return life;
 
 	}
+
+	public int getFire() {
+		return fire;
+	}
+
+	@Override
+	public void subtractBlood(int blood) {
+		// TODO Auto-generated method stub
+
+	}
 }

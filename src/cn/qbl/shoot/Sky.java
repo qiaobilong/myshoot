@@ -34,4 +34,10 @@ public class Sky extends FlyingObject {
 		}
 	}
 
+	@Override
+	public void subtractBlood(int blood) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

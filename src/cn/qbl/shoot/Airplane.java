@@ -32,4 +32,13 @@ public class Airplane extends FlyingObject implements EnemyScore {
 		return 1;
 	}
 
+	@Override
+	public void subtractBlood(int blood) {
+		this.blood -= blood;
+		if (this.blood <= 0) {
+			state = DEAD;
+			goDead();
+		}
+	}
+
 }

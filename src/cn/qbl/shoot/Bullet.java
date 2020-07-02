@@ -26,4 +26,10 @@ public class Bullet extends FlyingObject {
 	public boolean isOutside() {
 		return y <= -heidht;
 	}
+
+	@Override
+	public void subtractBlood(int blood) {
+		// TODO Auto-generated method stub
+		
+	}
 }

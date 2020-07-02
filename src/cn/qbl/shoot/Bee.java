@@ -20,7 +20,7 @@ public class Bee extends FlyingObject implements EnemyAward {
 			awardType = EnemyAward.FIRE;
 		}
 		speed = 2;
-		blood = 1;
+		blood = 2;
 	}
 
 	@Override
@@ -49,6 +49,15 @@ public class Bee extends FlyingObject implements EnemyAward {
 		x += xspeed;
 		if (x >= World.WIDTH - width || x <= 0) {
 			xspeed *= -1;
+		}
+	}
+
+	@Override
+	public void subtractBlood(int blood) {
+		this.blood -= blood;
+		if (this.blood <= 0) {
+			state = DEAD;
+			goDead();
 		}
 	}
 }

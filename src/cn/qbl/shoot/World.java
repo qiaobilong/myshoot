@@ -143,19 +143,22 @@ public class World extends JPanel {
 				FlyingObject e = enemies[j];
 				if (b.isLife() && e.isLife() && e.isHit(b)) {
 					b.goDead();
-					e.goDead();
-					if (e instanceof EnemyScore) {
-						score += ((EnemyScore) e).getScore();
-					}
-					if (e instanceof EnemyAward) {
-						int type = ((EnemyAward) e).getAward();
-						if (type == EnemyAward.LIFE) {
-							hero.addLife();
+					e.subtractBlood(1);
+					if (!e.isLife()) {
+						if (e instanceof EnemyScore) {
+							score += ((EnemyScore) e).getScore();
 						}
-						if (type == EnemyAward.FIRE) {
-							hero.addFire();
+						if (e instanceof EnemyAward) {
+							int type = ((EnemyAward) e).getAward();
+							if (type == EnemyAward.LIFE) {
+								hero.addLife();
+							}
+							if (type == EnemyAward.FIRE) {
+								hero.addFire();
+							}
 						}
 					}
+
 				}
 			}
 		}
@@ -192,7 +195,7 @@ public class World extends JPanel {
 			enemies = Arrays.copyOf(enemies, enemies.length + 1);
 			enemies[enemies.length - 1] = enemy;
 		}
-		if (enterIndex % 60 == 0) {
+		if (enterIndex % 30 == 0) {
 			Bullet[] bs = hero.getBullet();
 			bullets = Arrays.copyOf(bullets, bullets.length + bs.length);
 			System.arraycopy(bs, 0, bullets, bullets.length - bs.length, bs.length);
@@ -200,10 +203,10 @@ public class World extends JPanel {
 	}
 
 	private FlyingObject getEnemy() {
-		int num = new Random().nextInt(100);
-		if (num < 20) {
+		int num = new Random().nextInt(10);
+		if (num < 2) {
 			return new Bee();
-		} else if (num < 70) {
+		} else if (num < 7) {
 			return new Airplane();
 		} else {
 			return new BigAirplane();
