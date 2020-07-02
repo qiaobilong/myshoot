@@ -32,6 +32,7 @@ public class World extends JPanel {
 	private Hero hero = new Hero();
 	private Bullet[] bullets = {};
 	private FlyingObject[] enemies = {};
+	private Parachute[] parachutes = {};
 
 	private int score;
 
@@ -133,6 +134,12 @@ public class World extends JPanel {
 				enemies = Arrays.copyOf(enemies, enemies.length - 1);
 			}
 		}
+		for (int i = 0; i < parachutes.length; i++) {
+			if (parachutes[i].isRemove() || parachutes[i].isOutside()) {
+				parachutes[i] = parachutes[parachutes.length - 1];
+				parachutes = Arrays.copyOf(parachutes, parachutes.length - 1);
+			}
+		}
 	}
 
 	protected void checkHitAction() {
@@ -170,6 +177,28 @@ public class World extends JPanel {
 				hero.clearFire();
 			}
 		}
+		// 英雄机与空投碰撞
+		if (parachutes.length == 1) {
+			if (hero.isLife() && parachutes[0].isLife() && parachutes[0].isHit(hero)) {
+				parachutes[0].goDead();
+				// 所有敌人死亡
+				for (int i = 0; i < enemies.length; i++) {
+					enemies[i].goDead();
+					if (enemies[i] instanceof EnemyScore) {
+						score += ((EnemyScore) enemies[i]).getScore();
+					}
+					if (enemies[i] instanceof EnemyAward) {
+						int type = ((EnemyAward) enemies[i]).getAward();
+						if (type == EnemyAward.LIFE) {
+							hero.addLife();
+						}
+						if (type == EnemyAward.FIRE) {
+							hero.addFire();
+						}
+					}
+				}
+			}
+		}
 	}
 
 	protected void stepAction() {
@@ -180,12 +209,15 @@ public class World extends JPanel {
 		for (int i = 0; i < bullets.length; i++) {
 			bullets[i].step();
 		}
+		for (int i = 0; i < parachutes.length; i++) {
+			parachutes[i].step();
+		}
 	}
 
 	int enterIndex = 0;
 
 	/**
-	 * 敌机和子弹入场
+	 * 各种飞行物入场
 	 */
 	protected void enterAction() {
 		enterIndex++;
@@ -195,10 +227,16 @@ public class World extends JPanel {
 			enemies = Arrays.copyOf(enemies, enemies.length + 1);
 			enemies[enemies.length - 1] = enemy;
 		}
+		// 子弹入场
 		if (enterIndex % 30 == 0) {
 			Bullet[] bs = hero.getBullet();
 			bullets = Arrays.copyOf(bullets, bullets.length + bs.length);
 			System.arraycopy(bs, 0, bullets, bullets.length - bs.length, bs.length);
+		}
+		// 空投入场
+		if (enterIndex % 100 == 0 && parachutes.length == 0) {
+			parachutes = new Parachute[1];
+			parachutes[0] = new Parachute();
 		}
 	}
 
@@ -223,6 +261,9 @@ public class World extends JPanel {
 		}
 		for (int i = 0; i < enemies.length; i++) {
 			g.drawImage(enemies[i].getImage(), enemies[i].x, enemies[i].y, null);
+		}
+		for (int i = 0; i < parachutes.length; i++) {
+			g.drawImage(parachutes[i].getImage(), parachutes[i].x, parachutes[i].y, null);
 		}
 		g.drawString("MaxScore: " + maxScore, 10, 20);
 		g.drawString("Score: " + score, 10, 40);

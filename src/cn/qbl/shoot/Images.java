@@ -12,6 +12,7 @@ public class Images {
 	public static BufferedImage[] bigairplanes;
 	public static BufferedImage[] bees;
 	public static BufferedImage[] airplanes;
+	public static BufferedImage parachute;
 
 	public static BufferedImage start;
 	public static BufferedImage pause;
@@ -43,6 +44,8 @@ public class Images {
 			bees[i] = readImage("bom" + i + ".png");
 			airplanes[i] = readImage("bom" + i + ".png");
 		}
+
+		parachute = readImage("parachute.png");
 	}
 
 	public static BufferedImage readImage(String fileName) {
